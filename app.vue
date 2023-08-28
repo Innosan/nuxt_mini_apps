@@ -2,6 +2,7 @@
 import "~/assets/css/page_transition.css";
 import "~/assets/css/app.css";
 import "~/assets/css/font.css";
+import "~/assets/css/animations.css";
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import "~/assets/css/font.css";
 <style scoped>
 div {
 	display: flex;
+	gap: 60px;
 
 	width: 100vw;
 	height: 100vh;

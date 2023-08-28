@@ -6,7 +6,7 @@ const {data: characters} = await useFetch('http://innosan.pythonanywhere.com/har
 	<div class="page-container">
 		<h1>Harry Potter</h1>
 
-		<div>
+		<div class="characters-container">
 			<CharacterCard
 				v-for="character in characters"
 				:key="character.id"
@@ -20,5 +20,11 @@ const {data: characters} = await useFetch('http://innosan.pythonanywhere.com/har
 	.page-container {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.characters-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 60px;
 	}
 </style>
