@@ -1,3 +1,5 @@
 <template>
-	<h1>Emoji Finder</h1>
+	<div class="page-container">
+		<h1>Emoji Finder</h1>
+	</div>
 </template>

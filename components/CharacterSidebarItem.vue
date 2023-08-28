@@ -10,7 +10,7 @@ const showContent = ref(false)
 <template>
 	<div
 		@click="showContent = !showContent"
-		class="sidebar-container"
+		:class="`sidebar-container ${showContent}`"
 	>
 		<img :src="`/_nuxt/assets/icons/harry/${itemIcon}`" :alt="itemContent + ' icon'">
 		<transition name="fade">
@@ -34,5 +34,19 @@ const showContent = ref(false)
 		padding: 8px;
 
 		cursor: pointer;
+
+		transition: .5s ease-out;
+		opacity: .6;
+
+		&:hover {
+			box-shadow: 0 4px 4px 1px rgba(248, 84, 84, 0.15);
+			opacity: 1;
+		}
+	}
+
+	.true {
+		box-shadow: 0 4px 4px 1px rgba(248, 84, 84, 0.25);
+		outline: 1px solid #F85454;
+		opacity: 1;
 	}
 </style>

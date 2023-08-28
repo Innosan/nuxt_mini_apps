@@ -17,11 +17,6 @@ const {data: characters} = await useFetch('http://innosan.pythonanywhere.com/har
 </template>
 
 <style scoped>
-	.page-container {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.characters-container {
 		display: flex;
 		flex-wrap: wrap;

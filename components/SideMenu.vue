@@ -22,7 +22,7 @@
 nav {
 	display: flex;
 	flex-direction: column;
-	align-self: center;
+	align-self: flex-start;
 	gap: 40px;
 
 	background-color: #292929;
@@ -34,6 +34,9 @@ nav {
 	border-radius: 18px;
 
 	transition: 0.3s;
+
+	position: sticky;
+	top: 40px;
 
 	&:hover {
 		box-shadow: 18px 0 47px 12px rgba(0, 0, 0, 0.3);
