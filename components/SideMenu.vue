@@ -29,7 +29,6 @@ nav {
 
 	height: 80vh;
 	padding: 24px;
-	margin-left: 40px;
 
 	border-radius: 18px;
 

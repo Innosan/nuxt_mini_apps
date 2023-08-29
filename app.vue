@@ -18,7 +18,9 @@ div {
 	display: flex;
 	gap: 60px;
 
-	width: 100vw;
+	width: 95vw;
 	height: 100%;
+
+	margin: 0 auto;
 }
 </style>
