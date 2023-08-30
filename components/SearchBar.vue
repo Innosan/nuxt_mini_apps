@@ -42,7 +42,7 @@ const handleSearch = () => {
 
 		background: transparent;
 
-		width: -webkit-fill-available;
+		min-width: 400px;
 
 		font-size: 16px;
 		font-style: normal;

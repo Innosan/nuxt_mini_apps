@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {VueAwesomePaginate} from "vue-awesome-paginate";
 
-defineProps({
+const props = defineProps({
 	totalItems: {
 		type: Number,
 		required: true,
@@ -16,11 +16,11 @@ const emit = defineEmits(['page']);
 
 const currentPage = ref(1);
 const pageStart = ref(0)
-const pageEnd = ref(20)
+const pageEnd = ref(props.itemsPerPage)
 
 const onClickHandler = () => {
-	pageStart.value = (currentPage.value - 1) * 20;
-	pageEnd.value = pageStart.value + 20;
+	pageStart.value = (currentPage.value - 1) * props.itemsPerPage;
+	pageEnd.value = pageStart.value + props.itemsPerPage;
 
 	emit('page', {
 		pageStart: pageStart.value,

@@ -3,6 +3,6 @@
     src: url("/fonts/Manrope-VariableFont_wght.ttf");
 }
 
-input, button {
+input, button, option, select {
 	font-family: Manrope, sans-serif;
 }

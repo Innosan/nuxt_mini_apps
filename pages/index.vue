@@ -1,48 +1,77 @@
 <script setup lang="ts">
-const {data: characters} = await useFetch('https://innosan.pythonanywhere.com/harry-potter')
+const { data: characters } = await useFetch(
+	"https://innosan.pythonanywhere.com/harry-potter"
+);
 
-const itemsPerPage = 20
-const pageStartState = ref(0)
-const pageEndState = ref(20)
+const itemsPerPage = 20;
+const pageStartState = ref(0);
+const pageEndState = ref(itemsPerPage);
 
-const search = ref("")
+const search = ref("");
+
+const selectedFilters = ref({
+	house: "",
+	gender: "",
+});
 
 const performSearch = (searchQuery: string) => {
-	search.value = searchQuery
+	search.value = searchQuery;
 };
 
 const onPageChange = ({ pageStart, pageEnd }) => {
-	pageStartState.value = pageStart
-	pageEndState.value = pageEnd
-}
+	pageStartState.value = pageStart;
+	pageEndState.value = pageEnd;
+};
 
+const onFilterChange = ({ allFilters }) => {
+	selectedFilters.value = { ...allFilters };
+};
 </script>
 
 <template>
 	<div class="page-container">
 		<h1>Harry Potter</h1>
 
-		<SearchBar
-			@search="performSearch"
-		/>
+		<div class="sub-header">
+			<SearchBar @search="performSearch" />
+
+			<FilteringBar @filter="onFilterChange" />
+		</div>
+
+		<template v-if="selectedFilters">
+			<div class="characters-container">
+				<CharacterCard
+					v-for="character in characters.filter(
+						({ house, gender }) =>
+							house === selectedFilters.house &&
+							gender === selectedFilters.gender
+					)"
+					:key="character.id"
+					:character="character"
+				/>
+			</div>
+		</template>
 
 		<template v-if="search">
 			<div class="characters-container">
 				<CharacterCard
-					v-for="character in characters.filter(
-						({ name }) => name.toLowerCase().includes(search.toLowerCase())
+					v-for="character in characters.filter(({ name }) =>
+						name.toLowerCase().includes(search.toLowerCase())
 					)"
 					:key="character.id"
-					:character=character
+					:character="character"
 				/>
 			</div>
 		</template>
 		<template v-else>
 			<div class="characters-container">
 				<CharacterCard
-					v-for="character in characters.slice(pageStartState, pageEndState)"
+					v-for="character in characters.slice(
+						pageStartState,
+						pageEndState
+					)"
 					:key="character.id"
-					:character=character
+					:character="character"
 				/>
 			</div>
 
@@ -56,10 +85,15 @@ const onPageChange = ({ pageStart, pageEnd }) => {
 </template>
 
 <style scoped>
-	.characters-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 30px;
-	}
+.characters-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 30px;
+}
+
+.sub-header {
+	display: flex;
+	gap: 60px;
+}
 </style>
