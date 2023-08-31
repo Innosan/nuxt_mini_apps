@@ -5,4 +5,10 @@ export default defineNuxtConfig({
 	app: {
 		pageTransition: { name: "page", mode: "out-in" },
 	},
+	runtimeConfig: {
+		// Keys within public, will be also exposed to the client-side
+		public: {
+			apiBase: 'https://innosan.pythonanywhere.com/'
+		}
+	}
 });

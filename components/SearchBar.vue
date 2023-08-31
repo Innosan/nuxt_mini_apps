@@ -1,5 +1,9 @@
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(['search']);
+defineProps({
+	placeholder: String
+})
+
 const searchQuery = ref('');
 
 const handleSearch = () => {
@@ -13,7 +17,7 @@ const handleSearch = () => {
 		<img src="~assets/icons/ui/ic_search.svg" alt="">
 		<input
 			type="text"
-			placeholder="Type in character name..."
+			:placeholder="placeholder"
 			v-model="searchQuery"
 			@input="handleSearch"
 		>

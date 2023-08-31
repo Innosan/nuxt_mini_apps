@@ -1,6 +1,18 @@
 <script setup lang="ts">
+const runtimeConfig = useRuntimeConfig()
 const { data: characters } = await useFetch(
-	"https://innosan.pythonanywhere.com/harry-potter"
+	runtimeConfig.public.apiBase + '/harry-potter', {
+		transform: (characters) => {
+			return characters.map(character => ({
+				image: character.image,
+				house: character.house,
+				gender: character.gender,
+				name: character.name,
+				actor: character.actor,
+				dateOfBirth: character.dateOfBirth,
+			}))
+		}
+	}
 );
 
 const itemsPerPage = 20;
@@ -33,7 +45,10 @@ const onFilterChange = ({ allFilters }) => {
 		<h1>Harry Potter</h1>
 
 		<div class="sub-header">
-			<SearchBar @search="performSearch" />
+			<SearchBar
+				placeholder="Type in character name..."
+				@search="performSearch"
+			/>
 
 			<FilteringBar @filter="onFilterChange" />
 		</div>
@@ -42,6 +57,8 @@ const onFilterChange = ({ allFilters }) => {
 			<div class="characters-container">
 				<CharacterCard
 					v-for="character in characters.filter(
+
+						// TODO: change filtering logic
 						({ house, gender }) =>
 							house === selectedFilters.house &&
 							gender === selectedFilters.gender
