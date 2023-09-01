@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 const { data: characters } = await useFetch(
-	runtimeConfig.public.apiBase + '/harry-potter', {
+	runtimeConfig.public.myApiBase + '/harry-potter', {
 		transform: (characters) => {
 			return characters.map(character => ({
 				image: character.image,

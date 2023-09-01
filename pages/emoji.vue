@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
-const {data: emojis} = await useFetch(runtimeConfig.public.apiBase + "/emojis")
+const {data: emojis} = await useFetch(runtimeConfig.public.myApiBase + "/emojis")
 
 const search = ref("");
 
